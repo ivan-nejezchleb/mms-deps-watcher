@@ -1,0 +1,22 @@
+{
+  "name": "DepsWatcher",
+  "version": "0.0.1",
+  "author": {
+    "name": "Martin Mosko",
+    "email": "martin.mosko@gooddata.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:martinmosko/mms-deps-watcher.git"
+  },
+  "license": "BSD-3-Clause",
+  "files": [
+    "LICENSE"
+  ],
+  "scripts": {},
+  "devDependencies": {
+    "gulp": "3.9.1",
+    "gulp-run": "1.7.1"
+  },
+  "dependencies": {}
+}
