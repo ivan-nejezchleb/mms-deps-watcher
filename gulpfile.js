@@ -17,6 +17,14 @@ gulp.task('indigo-visualizations-prepublish', function() {
         '  echo "gooddata-indigo-visualizations prepublished & copied!"').exec();
 });
 
+gulp.task('gdc-app-components-prepublish', function() {
+    return run('echo "Running gdc-app-components prepublish..."\n' +
+        '  npm run prepublish  --prefix ../gdc-app-components\n' +
+        '  cp -r ../gdc-app-components/dist ../gdc-dashboards/node_modules/\\@gooddata/app-components\n' +
+        '  cp -r ../gdc-app-components/dist ../gdc-analytical-designer/node_modules/\\@gooddata/app-components\n' +
+        '  echo "gdc-app-components prepublished & copied!"').exec();
+});
+
 gulp.task('gooddata-react-components-prepublish', function() {
     return run('echo "Running gooddata-react-components prepublish..."\n' +
         '  npm run prepublish  --prefix ../gooddata-react-components\n' +
@@ -43,6 +51,9 @@ gulp.task('gooddata-js-prepublish', function() {
 });
 
 gulp.task('default', function () {
+    console.log("Running gdc-app-components watcher...");
+    gulp.watch(["../gdc-app-components/src/**/*"], ["gdc-app-components-prepublish"]);
+
 	console.log("Running gooddata-data-layer watcher...");
     gulp.watch(["../gooddata-data-layer/src/**/*"], ["data-layer-prepublish"]);
 
