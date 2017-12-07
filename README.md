@@ -1,5 +1,5 @@
 # mms-deps-watcher
-GoodData dependencies watcher for AD, KD projects.
+GoodData dependencies watcher for AD, KD (not tested yet) projects.
 
 ## Supported libraries
 
