@@ -3,6 +3,7 @@ GoodData dependencies watcher for AD, KD projects.
 
 ## Supported libraries
 
+* gdc-app-components
 * gooddata-react-components
 * gooddata-indigo-visualizations
 * gooddata-data-layer
