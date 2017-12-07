@@ -13,11 +13,8 @@ GoodData dependencies watcher for AD, KD projects.
 ## Install & Run
 
 Works automatically with yarn command.
-```
-yarn
-```
 
 ### Run watchers
 ```
-run
+gulp
 ```
