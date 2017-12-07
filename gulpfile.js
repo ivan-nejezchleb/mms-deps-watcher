@@ -17,6 +17,14 @@ gulp.task('indigo-visualizations-prepublish', function() {
         '  echo "gooddata-indigo-visualizations prepublished & copied!"').exec();
 });
 
+gulp.task('gooddata-react-components-prepublish', function() {
+    return run('echo "Running gooddata-react-components prepublish..."\n' +
+        '  npm run prepublish  --prefix ../gooddata-react-components\n' +
+        '  cp -r ../gooddata-react-components/dist ../gdc-dashboards/node_modules/\\@gooddata/react-components\n' +
+        '  cp -r ../gooddata-react-components/dist ../gdc-analytical-designer/node_modules/\\@gooddata/react-components\n' +
+        '  echo "gooddata-react-components prepublished & copied!"').exec();
+});
+
 gulp.task('gdc-goodstrap-prepublish', function() {
     return run('echo "Running gdc-goodstrap prepublish..."\n' +
         '  npm run prepublish --prefix ../gdc-goodstrap\n' +
@@ -35,13 +43,19 @@ gulp.task('gooddata-js-prepublish', function() {
 });
 
 gulp.task('default', function () {
-	console.log("Running gooddata-data-layer watcher...")
+	console.log("Running gooddata-data-layer watcher...");
     gulp.watch(["../gooddata-data-layer/src/**/*"], ["data-layer-prepublish"]);
+
+    console.log("Running gooddata-react-components watcher...");
+    gulp.watch(["../gooddata-react-components/src/**/*"], ["gooddata-react-components-prepublish"]);
+
     console.log("Running gooddata-indigo-visualizations watcher...");
     gulp.watch(["../gooddata-indigo-visualizations/src/**/*"], ["indigo-visualizations-prepublish"]);
-    console.log("Running gdc-goodstrap watcher...")
+
+    console.log("Running gdc-goodstrap watcher...");
     gulp.watch(["../gdc-goodstrap/src/**/*"], ["gdc-goodstrap-prepublish"]);
-    console.log("Running gooddata-js watcher...")
+
+    console.log("Running gooddata-js watcher...");
     gulp.watch(["./src/**/*"], ["gooddata-js-prepublish"]);
 });
 
