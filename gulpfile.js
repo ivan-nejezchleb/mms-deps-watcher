@@ -5,7 +5,9 @@ gulp.task('data-layer-prepublish', function() {
     return run('echo "Running gooddata-data-layer prepublish..."\n' +
         '  npm run prepublish  --prefix ../gooddata-data-layer\n' +
         '  cp -r ../gooddata-data-layer/dist ../gdc-dashboards/node_modules/\\@gooddata/data-layer\n' +
+        '  cp -r ../gooddata-data-layer/dist ../gdc-dashboards/node_modules/\\@gooddata/react-components/node_modules/\\@gooddata/data-layer\n' +
         '  cp -r ../gooddata-data-layer/dist ../gdc-analytical-designer/node_modules/\\@gooddata/data-layer\n' +
+        '  cp -r ../gooddata-data-layer/dist ../gdc-analytical-designer/node_modules/\\@gooddata/react-components/node_modules/\\@gooddata/data-layer\n' +
         '  echo "gooddata-data-layer prepublished & copied!"').exec();
 });
 
@@ -30,6 +32,7 @@ gulp.task('gooddata-react-components-prepublish', function() {
         '  npm run prepublish  --prefix ../gooddata-react-components\n' +
         '  cp -r ../gooddata-react-components/dist ../gdc-dashboards/node_modules/\\@gooddata/react-components\n' +
         '  cp -r ../gooddata-react-components/dist ../gdc-analytical-designer/node_modules/\\@gooddata/react-components\n' +
+        '  cp -r ../gooddata-react-components/dist ../gdc-app-components/node_modules/\\@gooddata/react-components\n' +
         '  echo "gooddata-react-components prepublished & copied!"').exec();
 });
 
@@ -44,10 +47,32 @@ gulp.task('gdc-goodstrap-prepublish', function() {
 gulp.task('gooddata-js-prepublish', function() {
     return run('echo "Running gooddata-js prepublish..."\n' +
         '  npm run prepublish --prefix ../gooddata-js\n' +
-        '  cp -r ../gooddata-js/dist ../gdc-dashboards/node_modules/gooddata/dist\n' +
-        '  cp -r ../gooddata-js/lib ../gdc-dashboards/node_modules/gooddata/lib\n' +
-        '  cp -r ../gooddata-js/src ../gdc-dashboards/node_modules/gooddata/src\n' +
+        '  cp -r ../gooddata-js/dist ../gdc-dashboards/node_modules/gooddata/\n' +
+        '  cp -r ../gooddata-js/lib ../gdc-dashboards/node_modules/gooddata/\n' +
+        '  cp -r ../gooddata-js/src ../gdc-dashboards/node_modules/gooddata/\n' +
+        '  cp -r ../gooddata-js/dist ../gdc-analytical-designer/node_modules/gooddata/\n' +
+        '  cp -r ../gooddata-js/lib ../gdc-analytical-designer/node_modules/gooddata/\n' +
+        '  cp -r ../gooddata-js/src ../gdc-analytical-designer/node_modules/gooddata/\n' +
         '  echo "gooddata-js prepublished & copied!"').exec();
+});
+
+gulp.task('mock-js-prepublish', function() {
+    return run('echo "Running mock-js prepublish..."\n' +
+        '  npm run prepublish --prefix ../mock-js\n' +
+        '  cp -r ../mock-js/dist ../gdc-dashboards/node_modules/\\@gooddata/mock-js/dist\n' +
+        '  cp -r ../mock-js/src ../gdc-dashboards/node_modules/\\@gooddata/mock-js/src\n' +
+        '  cp -r ../mock-js/dist ../gdc-analytical-designer/node_modules/\\@gooddata/mock-js/dist\n' +
+        '  cp -r ../mock-js/src ../gdc-analytical-designer/node_modules/\\@gooddata/mock-js/src\n' +
+        '  echo "mock-js prepublished & copied!"').exec();
+});
+
+gulp.task('gooddata-typings-prepublish', function() {
+    return run('echo "Running gooddata-typings prepublish..."\n' +
+        '  npm run prepublish --prefix ../gooddata-typings\n' +
+        '  cp -r ../gooddata-typings/dist ../gdc-dashboards/node_modules/\\@gooddata/typings/\n' +
+        '  cp -r ../gooddata-typings/dist ../gdc-analytical-designer/node_modules/\\@gooddata/typings/\n' +
+        '  cp -r ../gooddata-typings/dist ../gooddata-data-layer/node_modules/\\@gooddata/typings/\n' +
+        '  echo "gooddata-typings prepublished & copied!"').exec();
 });
 
 gulp.task('default', function () {
@@ -67,6 +92,12 @@ gulp.task('default', function () {
     gulp.watch(["../gdc-goodstrap/src/**/*"], ["gdc-goodstrap-prepublish"]);
 
     console.log("Running gooddata-js watcher...");
-    gulp.watch(["./src/**/*"], ["gooddata-js-prepublish"]);
+    gulp.watch(["../gooddata-js/src/**/*"], ["gooddata-js-prepublish"]);
+
+    console.log("Running mock-js watcher...");
+    gulp.watch(["../mock-js/src/**/*"], ["mock-js-prepublish"]);
+
+    console.log("Running gooddata-typings watcher...");
+    gulp.watch(["../gooddata-typings/**/*"], ["gooddata-typings-prepublish"]);
 });
 
